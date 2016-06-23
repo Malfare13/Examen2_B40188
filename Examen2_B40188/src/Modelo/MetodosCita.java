@@ -36,7 +36,7 @@ public class MetodosCita {
     }
 
 
-    public void imprimirLista() {
+    public String imprimirLista() {
         Cita auxiliar = primero;
         String valores = "";
         while (auxiliar != null) {
@@ -48,7 +48,7 @@ public class MetodosCita {
             valores += "\n";
             auxiliar = auxiliar.getSiguiente();
         }
-        System.out.println(valores);
+        return valores;
     }
 
     public void modificar(String[] arreglo) {

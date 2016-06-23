@@ -47,6 +47,10 @@ public class Ventana_Reportes extends javax.swing.JFrame {
     public void limpiarArea() {
         this.jta_Reportes.setText("");
     }
+    
+    public void imprimirEnElArea(String texto) {
+        this.jta_Reportes.setText(texto);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
