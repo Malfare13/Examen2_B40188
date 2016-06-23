@@ -53,7 +53,7 @@ public class MetodosCita {
 
     public void modificar(String[] arreglo) {
         Cita temporal = primero;
-        while (!temporal.getCedula().equals(arreglo[0])) {//mientras sea diferente al arreglo pase al siguiente
+        while (!temporal.getCedula().equals(arreglo[0])) {
             temporal = temporal.getSiguiente();
         }
         temporal.setNombre(arreglo[1]);
