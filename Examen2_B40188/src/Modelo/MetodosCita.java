@@ -112,7 +112,9 @@ public class MetodosCita {
     }
     
     public void LlamarPrimeroYEliminar(){
-        primero=primero.getSiguiente();
+        System.out.print("EliminarPrimero");
+            Cita temporal=primero.getSiguiente();
+            primero=temporal;
     }
     
      public void eliminarCita(String cedula){
@@ -135,14 +137,17 @@ public class MetodosCita {
 }
      
     
-    public boolean buscar(String cedula){
+    public void buscar(String cedula){
         Cita temporal=primero;
         boolean datoEncontrado= false;
         while(!temporal.getCedula().equals(cedula)){
             datoEncontrado=false;
         }
         datoEncontrado=true;
-        return datoEncontrado;
+        temporal.getNombre();
+        temporal.getEdad();
+        temporal.getFechaCita();
+
     }
     
 

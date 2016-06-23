@@ -31,6 +31,10 @@ public class Ventana_Cita extends javax.swing.JFrame{
         this.btn_Buscar.addActionListener(controlador);
         this.jcb_Opciones.addActionListener(controlador);
         this.jcb_TipoCliente.addActionListener(controlador);
+        this.btn_SiguienteCliente.addActionListener(controlador);
+        this.jcb_Reportes.addActionListener(controlador);
+        this.btn_MayorAMenor.addActionListener(controlador);
+        this.btn_MenorAMayor.addActionListener(controlador);
     }
     
     public String devolverSeleccionComboBoxOpciones() {
@@ -48,6 +52,28 @@ public class Ventana_Cita extends javax.swing.JFrame{
             ordenSeleccionado = "Reportes";
         }
         return ordenSeleccionado;
+    }
+    
+     public String devolverSeleccionComboBox() {
+        String ordenSeleccionado = "";
+        if (this.jcb_Reportes.getSelectedItem().toString().equals("Mostrar todas las citas")) {
+            ordenSeleccionado = "Toda la lista";
+        }
+        if (this.jcb_Reportes.getSelectedItem().toString().equals("Mostrar promedio de edades")) {
+            ordenSeleccionado = "Promedio de edades";
+        }
+        if (this.jcb_Reportes.getSelectedItem().toString().equals("Mostrar cantidad de citas")) {
+            ordenSeleccionado = "Cantidad de citas";
+        }
+        return ordenSeleccionado;
+    }
+    
+    public void limpiarArea() {
+        this.jta_Reportes.setText("");
+    }
+    
+    public void imprimirEnElArea(String texto) {
+        this.jta_Reportes.setText(texto);
     }
     
     public String devolverSeleccionTipoCliente() {
@@ -128,6 +154,13 @@ public class Ventana_Cita extends javax.swing.JFrame{
         jcb_Opciones = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jcb_TipoCliente = new javax.swing.JComboBox<>();
+        btn_SiguienteCliente = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jta_Reportes = new javax.swing.JTextArea();
+        jcb_Reportes = new javax.swing.JComboBox<>();
+        btn_MenorAMayor = new javax.swing.JButton();
+        btn_MayorAMenor = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,7 +177,7 @@ public class Ventana_Cita extends javax.swing.JFrame{
 
         btn_Buscar.setText("Buscar");
 
-        jcb_Opciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar Cita", "Modificar Cita", "Cancelar Cita", "Reportes" }));
+        jcb_Opciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agregar Cita", "Modificar Cita", "Cancelar Cita" }));
         jcb_Opciones.setActionCommand("Opciones");
 
         jLabel6.setText("Tipo Cliente:");
@@ -152,14 +185,37 @@ public class Ventana_Cita extends javax.swing.JFrame{
         jcb_TipoCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Regular", "Preferencial (7600)" }));
         jcb_TipoCliente.setActionCommand("Tipo Cliente");
 
+        btn_SiguienteCliente.setText("Atender Siguiente Cliente");
+
+        jta_Reportes.setColumns(20);
+        jta_Reportes.setRows(5);
+        jScrollPane1.setViewportView(jta_Reportes);
+
+        jcb_Reportes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mostrar todas las citas", "Mostrar promedio de edades", "Mostrar cantidad de citas" }));
+        jcb_Reportes.setActionCommand("Reportes");
+
+        btn_MenorAMayor.setText("Ordenar Menor a Mayor");
+
+        btn_MayorAMenor.setText("Ordenar Mayor a Menor");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel7.setText("Reportes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addComponent(btn_SiguienteCliente)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,40 +238,60 @@ public class Ventana_Cita extends javax.swing.JFrame{
                                     .addComponent(btn_Buscar))
                                 .addComponent(jt_Nombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jt_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcb_TipoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jLabel4)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                            .addComponent(jcb_TipoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_MayorAMenor)
+                                .addGap(52, 52, 52)
+                                .addComponent(btn_MenorAMayor))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jcb_Reportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7)))
+                        .addGap(31, 31, 31))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel7))
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jt_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Buscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jt_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jt_FechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcb_Opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jcb_TipoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jt_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_Buscar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jt_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jt_FechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcb_Opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jcb_TipoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jcb_Reportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_MayorAMenor)
+                            .addComponent(btn_MenorAMayor)
+                            .addComponent(btn_SiguienteCliente))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -258,17 +334,24 @@ public class Ventana_Cita extends javax.swing.JFrame{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Buscar;
+    private javax.swing.JButton btn_MayorAMenor;
+    private javax.swing.JButton btn_MenorAMayor;
+    private javax.swing.JButton btn_SiguienteCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jcb_Opciones;
+    private javax.swing.JComboBox<String> jcb_Reportes;
     private javax.swing.JComboBox<String> jcb_TipoCliente;
     private javax.swing.JTextField jt_Cedula;
     private javax.swing.JTextField jt_Edad;
     private javax.swing.JTextField jt_FechaCita;
     private javax.swing.JTextField jt_Nombre;
+    private javax.swing.JTextArea jta_Reportes;
     // End of variables declaration//GEN-END:variables
 }
